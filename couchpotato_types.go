@@ -5,9 +5,15 @@ type SearchResponse struct {
 	Success bool `json:"success"`
 }
 
+type AddResponse struct {
+	Movie Movie `json:"movie"`
+	Success bool `json:"success"`
+}
+
+
 type Movie struct {
 	Rating struct {
-		       Imdb []int `json:"imdb"`
+		       Imdb []float32 `json:"imdb"`
 	       } `json:"rating,omitempty"`
 	TmdbID int `json:"tmdb_id"`
 	ActorRoles struct {

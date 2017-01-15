@@ -24,3 +24,19 @@ func (cc *CouchpotatoClient) SearchMovies(term string) ([]Movie, error) {
 
 	return res.Movies, nil
 }
+
+func (cc *CouchpotatoClient) AddMovie(title string, imdbid string) (Movie, error) {
+	res := &AddResponse{}
+
+	err := cc.DoRequest("GET", "movie.add", map[string]string{"title":title, "identifier":imdbid}, nil, res)
+
+	if err != nil {
+		return Movie{}, errors.Annotate(err, "Failed to add movie")
+	}
+
+	if res.Success != true {
+		return Movie{}, errors.Errorf("Movie add returned failure")
+	}
+
+	return res.Movie, nil
+}
