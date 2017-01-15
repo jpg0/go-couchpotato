@@ -4,7 +4,7 @@ import (
 	"github.com/juju/errors"
 )
 
-func (cc *CouchpotatoClient) MovieSeachLookup(term string) ([]Movie, error) {
+func (cc *CouchpotatoClient) SearchMovies(term string) ([]Movie, error) {
 
 	if term == "" {
 		return nil, errors.New("No term specified")
